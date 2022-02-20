@@ -30,8 +30,6 @@
     <script>
       Sentry.init({
         dsn: "https://816327d8687245d5910f8f4d5c41eb5c@o315508.ingest.sentry.io/6220406",
-        // this assumes your build process sets "npm_package_version" in the env
-        release: "my-project-name@" + process.env.npm_package_version,
         integrations: [new Sentry.BrowserTracing()],
 
         // We recommend adjusting this value in production, or using tracesSampler
