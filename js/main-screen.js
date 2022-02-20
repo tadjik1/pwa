@@ -45,6 +45,7 @@ export default class MainScreenViewModel {
       this.processing(false);
     };
     reader.onerror = (event) => {
+      Sentry.captureException(reader.error);
       this.processing(false);
     };
 
