@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <script
-            src="https://browser.sentry-cdn.com/6.17.9/bundle.min.js"
-            integrity="sha384-bg8ATkDzxNiciak2tVJV/r+DHguxvOKHQqRi2SKP2mc8IOZphuG/bYdsyBm+KQC3"
+            src="https://browser.sentry-cdn.com/6.17.9/bundle.tracing.min.js"
+            integrity="sha384-FItuQ+AF7gqljIq5rozCj0vTwFbFlxfi7HCL/AHpP6jtDXICPcQyHXOceH/poGUw"
             crossorigin="anonymous"
     ></script>
 
@@ -31,9 +31,6 @@
       Sentry.init({
         dsn: "https://816327d8687245d5910f8f4d5c41eb5c@o315508.ingest.sentry.io/6220406",
         integrations: [new Sentry.BrowserTracing()],
-
-        // We recommend adjusting this value in production, or using tracesSampler
-        // for finer control
         tracesSampleRate: 1.0,
       });
     </script>
