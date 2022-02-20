@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PWA Example</title>
+    <meta name="description" content="A simple HTML5 Template for new projects.">
+    <meta name="author" content="Sergey Zelenov">
+
+    <meta property="og:title" content="A Basic HTML5 Template">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:description" content="A simple HTML5 Template for new projects.">
+    <meta property="og:image" content="image.png">
+    <link rel="manifest" href="manifest.webmanifest">
+
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+
+<main class="root" data-bind="component: { name: screen }">
+    <p>loading...</p>
+</main>
+
+<script type='text/javascript' src='js/localforage-1.10.0.js'></script>
+<script type='text/javascript' src='js/knockout-3.5.1.js'></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('js/service-worker.js');
+  }
+</script>
+
+<script src="js/application.js" type="module"></script>
+
+<script type="text/html" id="main-screen">
+    <p>main screen</p>
+    <ul data-bind="foreach: files">
+        <li>
+            <span data-bind="text: $index"></span>.
+            <span data-bind="text: name"></span>
+            &nbsp;
+            <span data-bind="text: type"></span>
+            &nbsp;
+            <span data-bind="text: $parent.humanizeSize(size)"></span>
+            <button data-bind="click: $parent.playFile">play</button>
+            <button data-bind="click: $parent.removeFile">remove</button>
+        </li>
+    </ul>
+
+    <input
+        type="file"
+        accept="audio/*,video/*"
+        id="file-input"
+        style="display: none;"
+        data-bind="event: { change: addFile }, disabled: processing" />
+    <button data-bind="click: openFileSelection, disable: processing">Add file</button>
+</script>
+
+</body>
+</html>
