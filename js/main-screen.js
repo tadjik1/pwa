@@ -60,6 +60,7 @@ export default class MainScreenViewModel {
     const audio = document.createElement('audio');
     audio.autoplay = true;
     audio.onended = () => URL.revokeObjectURL(objectURL);
+    audio.onerror = () => console.log(audio.error);
     audio.src = objectURL;
   }
 
