@@ -56,7 +56,7 @@ export default class MainScreenViewModel {
     if (!file.type.includes('audio')) return;
 
     const content = await localforage.getItem(file.uuid);
-    const objectURL = URL.createObjectURL(new Blob([content]));
+    const objectURL = URL.createObjectURL(new Blob([content], { type: file.type }));
     const audio = document.createElement('audio');
     audio.autoplay = true;
     audio.onended = () => URL.revokeObjectURL(objectURL);
