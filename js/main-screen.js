@@ -55,13 +55,14 @@ export default class MainScreenViewModel {
   async playFile(file) {
     if (!file.type.includes('audio')) return;
 
+    const context = new AudioContext();
     const content = await localforage.getItem(file.uuid);
-    const objectURL = URL.createObjectURL(new Blob([content], { type: file.type }));
-    const audio = document.createElement('audio');
-    audio.autoplay = true;
-    audio.onended = () => URL.revokeObjectURL(objectURL);
-    audio.onerror = () => console.log(audio.error);
-    audio.src = objectURL;
+
+    const buffer = await context.decodeAudioData(content);
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.start();
   }
 
   async removeFile(_file) {
